@@ -1,8 +1,9 @@
 # 全球城市空气质量预测平台 - AWS 架构设计方案
 
 **文档版本**: v2.0
-**作者**: 申洪汭
+**作者**: etworker
 **日期**: 2026-02-05
+**代码：**https://github.com/etworker/world_aq
 
 ---
 
@@ -249,19 +250,8 @@ ABC 公司正在构建"全球城市空气质量预测平台"，核心功能为�
 | 存储 | 需要管理文件服务器 | Amazon S3 对象存储 | 99.999999999% 持久性、自动分层存储 |
 
 **具体实现**：
-```mermaid
-graph LR
-    subgraph "Traditional"
-        EC1[EC2 Instance] --> LB[Load Balancer] --> DB[Self-Managed DB]
-    end
-    
-    subgraph "AWS Serverless"
-        AP[App Runner] --> AR[Aurora] --> EC[ElastiCache]
-    end
-    
-    style EC1 fill:#E74C3C,stroke:#C0392B,color:white
-    style AP fill:#27AE60,stroke:#229954,color:white
-```
+
+![](images/serverless.svg)
 
 ### 8.2 解决数据扩展性问题
 
@@ -311,27 +301,7 @@ S3 数据湖分层存储：
 
 **自动化 ETL 流程**：
 
-```mermaid
-graph TD
-    subgraph "数据摄入"
-        S3_Raw[S3 Raw Zone] --> Glue[AWS Glue]
-    end
-    
-    subgraph "数据处理"
-        Glue --> S3_Proc[S3 Processed Zone]
-    end
-    
-    subgraph "ML 训练"
-        S3_Proc --> SageMaker[SageMaker Training]
-    end
-    
-    subgraph "模型部署"
-        SageMaker --> Endpoint[SageMaker Endpoint]
-    end
-    
-    style S3_Raw fill:#F39C12,stroke:#E67E22
-    style S3_Proc fill:#27AE60,stroke:#229954
-```
+![](images/etl.svg)
 
 ### 8.3 解决集成开发环境需求
 
@@ -370,20 +340,7 @@ SageMaker Studio:
 
 **自动化流程**：
 
-```mermaid
-graph TD
-    subgraph "自动化训练流程"
-        Data[处理数据<br/>Parquet + 分区] --> AutoGluon[AutoGluon AutoML]
-        AutoGluon --> Models[自动训练多个模型<br/>RF/XGBoost/LightGBM等]
-        Models --> Metrics[自动评估指标<br/>RMSE/MAE/R2]
-        Metrics --> Best[自动选择最佳模型]
-        Best --> Registry[保存到 Model Registry]
-        Registry --> Deploy[自动部署到 Endpoint]
-    end
-    
-    style AutoGluon fill:#8E44AD,stroke:#6C3483,color:white
-    style Best fill:#27AE60,stroke:#229954,color:white
-```
+![](images/sagemaker_autogluon.svg)
 
 **AutoGluon 优势**：
 
@@ -393,6 +350,7 @@ graph TD
 - **时间序列专项**：内置时间序列验证，防止数据泄露
 
 **实验跟踪**：
+
 - SageMaker Experiments 记录所有实验指标
 - SageMaker Model Registry 管理模型版本
 - 只有通过验证的模型才会晋升为 Active
@@ -405,21 +363,8 @@ graph TD
 #### 解决方案：Amazon Bedrock (SDXL) 文本到图像生成
 
 **生成流程**：
-```mermaid
-graph TD
-    subgraph "生成流程"
-        User[用户请求预测] --> Predict[获取 AQI 预测]
-        Predict --> Prompt[组装 Prompt<br/>城市 + 天气 + AQI + 健康]
-        Prompt --> Bedrock[Amazon Bedrock<br/>SDXL 生成]
-        Bedrock --> Image[生成图片]
-        Image --> S3[存储到 S3]
-        S3 --> CF[CloudFront 分发]
-        CF --> User
-    end
-    
-    style Prompt fill:#3498DB,stroke:#2980B9,color:white
-    style Bedrock fill:#9B59B6,stroke:#8E44AD,color:white
-```
+
+![](images/bedrock.svg)
 
 **Prompt 工程示例**：
 ```
@@ -438,9 +383,11 @@ aspect ratio 9:16, high quality, detailed."
 - aqi_level: 轻度污染
 - aqi_value: 85
 - health_advice: 敏感人群应减少户外活动
-
-生成结果：展示北京天安门广场，晴朗天气，轻微雾霾，带有 AQI 指示器
 ```
+
+生成结果：展示北京地标，晴朗天气，轻微雾霾，带有 AQI 指示器
+
+![](images/gen_image.png)
 
 ### 8.6 解决高可用和低延迟需求
 
@@ -465,26 +412,8 @@ aspect ratio 9:16, high quality, detailed."
 - **跨区域复制**：支持多区域部署
 
 **架构对比**：
-```mermaid
-graph TB
-    subgraph "传统架构"
-        User[用户] --> Web[Web Server]
-        Web --> DB[单一数据库]
-    end
-    
-    subgraph "AWS 优化架构"
-        User2[用户] --> CF[CloudFront]
-        CF --> Redis[ElastiCache 缓存]
-        Redis -->|Cache Miss| API[API Gateway]
-        API --> App[App Runner]
-        App -->|Inference| SM[SageMaker Endpoint]
-        App -->|Cache Hit| Redis
-        App -->|Read/Write| Aurora[Aurora 主库 + 只读副本]
-    end
-    
-    style DB fill:#E74C3C,stroke:#C0392B,color:white
-    style Aurora fill:#27AE60,stroke:#229954,color:white
-```
+
+![](images/compare.svg)
 
 ---
 

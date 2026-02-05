@@ -1,0 +1,45 @@
+<svg width="850" height="280" xmlns="http://www.w3.org/2000/svg">
+ <!-- 定义箭头 -->
+ <defs>
+  <marker markerUnits="strokeWidth" orient="auto" refY="3" refX="9" markerHeight="10" markerWidth="10" id="arrow">
+   <path id="svg_1" fill="#666" d="m0,0l0,6l9,-3l-9,-3z"/>
+  </marker>
+ </defs>
+ <!-- 左侧：Traditional 区域 -->
+ <!-- LB -->
+ <!-- EC2 -->
+ <!-- DB Legacy -->
+ <!-- 连线 Traditional -->
+ <!-- 右侧：Serverless 区域 -->
+ <!-- App Runner -->
+ <!-- Aurora -->
+ <!-- ElastiCache -->
+ <!-- 连线 Serverless -->
+ <!-- App Runner -> Aurora -->
+ <!-- App Runner -> ElastiCache -->
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_2" stroke-width="2" stroke-dasharray="5,5" stroke="#ccc" fill="#fcfcfc" rx="10" height="240" width="380" y="20" x="20"/>
+  <text id="svg_3" fill="#555" font-weight="bold" text-anchor="middle" y="50" x="210">📉 Traditional</text>
+  <rect id="svg_4" stroke-width="2" stroke="#7F8C8D" fill="#95A5A6" rx="5" height="50" width="100" y="100" x="40"/>
+  <text style="cursor: move;" id="svg_5" font-size="12" fill="white" text-anchor="middle" y="130" x="90">Load Balancer</text>
+  <rect id="svg_6" stroke-width="2" stroke="#C0392B" fill="#E74C3C" rx="5" height="50" width="100" y="100" x="170"/>
+  <text style="cursor: move;" id="svg_7" font-size="12" fill="white" text-anchor="middle" y="130" x="220">EC2 Instance</text>
+  <path stroke="#C0392B" id="svg_8" stroke-width="2" fill="#E74C3C" d="m300,100q0,-5 42.5,-5q42.5,0 42.5,5l0,45q0,5 -42.5,5q-42.5,0 -42.5,-5l0,-45z"/>
+  <ellipse id="svg_9" stroke-width="2" stroke="#C0392B" fill="#E74C3C" ry="5" rx="35" cy="100" cx="335"/>
+  <text id="svg_10" font-size="12" fill="white" text-anchor="middle" y="130" x="344">Self-Managed</text>
+  <line id="svg_11" marker-end="url(#arrow)" stroke-width="2" stroke="#666" y2="125" x2="160" y1="125" x1="140"/>
+  <line id="svg_12" marker-end="url(#arrow)" stroke-width="2" stroke="#666" y2="125" x2="290" y1="125" x1="270"/>
+  <rect id="svg_13" stroke-width="2" stroke="#3498DB" fill="#f0fbff" rx="10" height="240" width="380" y="20" x="440"/>
+  <text id="svg_14" fill="#2980B9" font-weight="bold" text-anchor="middle" y="50" x="630">☁️ AWS Serverless</text>
+  <rect id="svg_15" stroke-width="2" stroke="#D68910" fill="#F39C12" rx="5" height="50" width="110" y="100" x="460"/>
+  <text style="cursor: move;" id="svg_16" font-size="12" fill="white" text-anchor="middle" y="130" x="515">App Runner</text>
+  <path id="svg_17" stroke-width="2" stroke="#229954" fill="#27AE60" d="m630,70q0,-5 40,-5q40,0 40,5l0,35q0,5 -40,5q-40,0 -40,-5l0,-35z"/>
+  <ellipse id="svg_18" stroke-width="2" stroke="#229954" fill="#27AE60" ry="5" rx="40" cy="70" cx="670"/>
+  <text style="cursor: move;" id="svg_19" font-size="12" fill="white" text-anchor="middle" y="95" x="670">Aurora</text>
+  <rect id="svg_20" stroke-width="2" stroke="#6C3483" fill="#8E44AD" rx="5" height="50" width="110" y="150" x="630"/>
+  <text style="cursor: move;" id="svg_21" font-size="12" fill="white" text-anchor="middle" y="180" x="685">ElastiCache</text>
+  <line id="svg_22" marker-end="url(#arrow)" stroke-width="2" stroke="#666" y2="90" x2="620" y1="115" x1="570"/>
+  <line id="svg_23" marker-end="url(#arrow)" stroke-width="2" stroke="#666" y2="165" x2="620" y1="135" x1="570"/>
+ </g>
+</svg>
