@@ -1,0 +1,106 @@
+<svg width="1000" height="700" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <!-- Gradients -->
+  <!-- Styles -->
+  <!-- Arrow Marker -->
+  <marker orient="auto" refY="3" refX="9" markerHeight="10" markerWidth="10" id="arrow">
+   <path id="svg_1" fill="#333" d="m0,0l0,6l9,-3l-9,-3z"/>
+  </marker>
+  <!-- ICONS -->
+  <!-- Laptop -->
+  <symbol viewBox="0 0 100 100" id="icon-laptop">
+   <rect id="svg_2" fill="#333" rx="5" height="50" width="80" y="20" x="10"/>
+   <rect id="svg_3" fill="#fff" height="40" width="70" y="25" x="15"/>
+   <path id="svg_4" fill="#555" d="m0,70l100,0l-10,15l-80,0l-10,-15z"/>
+  </symbol>
+  <!-- User -->
+  <symbol viewBox="0 0 100 100" id="icon-user">
+   <circle id="svg_5" fill="#D65A18" r="20" cy="40" cx="50"/>
+   <path id="svg_6" fill="none" stroke-width="5" stroke="#D65A18" d="m20,90q30,-50 60,0"/>
+  </symbol>
+  <!-- Alert/Warning -->
+  <symbol viewBox="0 0 100 100" id="icon-alert">
+   <path id="svg_7" stroke-width="2" stroke="#D65A18" fill="#FFCC00" d="m50,10l40,80l-80,0l40,-80z"/>
+   <text id="svg_8" fill="#000" text-anchor="middle" font-weight="bold" font-size="50" font-family="Arial" y="75" x="50">!</text>
+  </symbol>
+  <!-- Database (Disk) -->
+  <symbol viewBox="0 0 100 100" id="icon-db">
+   <path id="svg_9" stroke-width="4" stroke="#555" fill="none" d="m20,20l60,0l0,60l-60,0l0,-60z"/>
+   <path id="svg_10" stroke-width="2" stroke="#555" d="m20,35l60,0m-60,15l60,0m-60,15l60,0"/>
+  </symbol>
+ </defs>
+ <!-- Background -->
+ <!-- Header -->
+ <!-- ================= GROUP 1: LOCAL DEVELOPMENT ================= -->
+ <!-- ================= GROUP 2: THE MONOLITH (Center) ================= -->
+ <!-- The Big Server Box -->
+ <!-- Alert Icon -->
+ <!-- Component: Web Server -->
+ <!-- Component: Model File -->
+ <!-- Component: Cron Job -->
+ <!-- Component: Local DB -->
+ <!-- Pain points inside server -->
+ <!-- ================= GROUP 3: END USER ================= -->
+ <!-- ================= GROUP 4: EXTERNAL DATA ================= -->
+ <!-- ================= ARROWS ================= -->
+ <!-- Manual Upload -->
+ <!-- User Access -->
+ <!-- Data Flow -->
+ <!-- Internal Dependency -->
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_11" fill="#FFFFFF" height="100%" width="100%"/>
+  <rect id="svg_12" stroke-width="2" stroke="#ccc" fill="none" rx="15" height="680" width="980" y="10" x="11"/>
+  <text style="cursor: move;" id="svg_13" fill="#333" font-weight="bold" font-size="24px" font-family="Arial, sans-serif" class="title" y="50" x="50">Current Architecture</text>
+  <text id="svg_14" fill="#666" font-size="14px" font-family="Arial, sans-serif" class="subtitle" y="75" x="50">Client: ABC Company | Phase: Infancy / Manual</text>
+  <g id="svg_15">
+   <use id="svg_16" height="80" width="80" y="250" x="70" href="#icon-laptop"/>
+   <text id="svg_17" text-anchor="middle" fill="#333" font-weight="bold" font-size="12px" font-family="Arial, sans-serif" class="label-bold" y="350" x="110">Data Scientist</text>
+   <text id="svg_18" text-anchor="middle" fill="#555" font-size="10px" font-family="Arial, sans-serif" class="label-small" y="365" x="110">Local Notebooks</text>
+   <text id="svg_19" text-anchor="middle" font-weight="bold" fill="#D13212" font-size="11px" font-family="Arial, sans-serif" class="pain-point" y="390" x="110">"Works on my machine"</text>
+  </g>
+  <rect id="svg_20" rx="10" stroke-dasharray="8,4" stroke-width="2" stroke="#D65A18" fill="#F9F9F9" class="box-dashed" height="400" width="400" y="151" x="300"/>
+  <text id="svg_21" font-weight="bold" font-family="Arial, sans-serif" text-anchor="middle" fill="#333" font-size="12px" class="label-bold" y="180" x="320">Single EC2 Instance (Monolith)</text>
+  <use id="svg_22" height="40" width="40" y="130" x="650" href="#icon-alert"/>
+  <text id="svg_23" font-weight="bold" fill="#D13212" font-size="11px" font-family="Arial, sans-serif" text-anchor="middle" class="pain-point" y="155" x="730">Single Point</text>
+  <text id="svg_24" font-weight="bold" fill="#D13212" font-size="11px" font-family="Arial, sans-serif" text-anchor="middle" class="pain-point" y="170" x="730">of Failure!</text>
+  <g id="svg_25">
+   <rect id="svg_26" x="350" y="220" rx="5" stroke="#555" fill="#FFFFFF" class="box-solid" height="70" width="140"/>
+   <text id="svg_27" text-anchor="middle" fill="#333" font-weight="bold" font-size="12px" font-family="Arial, sans-serif" class="label-bold" y="250" x="420">Web Server</text>
+   <text id="svg_28" text-anchor="middle" fill="#555" font-size="10px" font-family="Arial, sans-serif" class="label-small" y="270" x="420">(Flask / Django)</text>
+  </g>
+  <g id="svg_29">
+   <rect id="svg_30" x="520" y="220" rx="5" stroke="#555" fill="#FFFFFF" class="box-solid" height="70" width="140"/>
+   <text id="svg_31" text-anchor="middle" fill="#333" font-weight="bold" font-size="12px" font-family="Arial, sans-serif" class="label-bold" y="250" x="590">Model Artifact</text>
+   <text id="svg_32" text-anchor="middle" fill="#555" font-size="10px" font-family="Arial, sans-serif" class="label-small" y="270" x="590">Local .pkl file</text>
+  </g>
+  <g id="svg_33">
+   <rect id="svg_34" x="350" y="350" rx="5" stroke="#555" fill="#FFFFFF" class="box-solid" height="70" width="140"/>
+   <text id="svg_35" text-anchor="middle" fill="#333" font-weight="bold" font-size="12px" font-family="Arial, sans-serif" class="label-bold" y="380" x="420">Cron Script</text>
+   <text id="svg_36" text-anchor="middle" fill="#555" font-size="10px" font-family="Arial, sans-serif" class="label-small" y="400" x="420">Download Data</text>
+  </g>
+  <use transform="matrix(1 0 0 1.06605 0 -24.2411)" stroke="null" id="svg_38" height="60" width="60" y="351.24784" x="559" href="#icon-db"/>
+  <text transform="matrix(1 0 0 1.06605 0 -24.2411)" stroke="null" id="svg_39" text-anchor="middle" fill="#333" font-weight="bold" font-size="12px" font-family="Arial, sans-serif" class="label-bold" y="415.62824" x="590">Local Disk/DB</text>
+  <text id="svg_40" text-anchor="middle" font-weight="bold" fill="#D13212" font-size="11px" font-family="Arial, sans-serif" class="pain-point" y="450" x="500">Resource Contention</text>
+  <text id="svg_41" text-anchor="middle" fill="#555" font-size="10px" font-family="Arial, sans-serif" class="label-small" y="465" x="500">(Training slows down Web App)</text>
+  <g id="svg_42">
+   <use id="svg_43" height="60" width="60" y="250" x="820" href="#icon-user"/>
+   <text id="svg_44" text-anchor="middle" fill="#333" font-weight="bold" font-size="12px" font-family="Arial, sans-serif" class="label-bold" y="330" x="850">End Users</text>
+   <text id="svg_45" text-anchor="middle" font-weight="bold" fill="#D13212" font-size="11px" font-family="Arial, sans-serif" class="pain-point" y="350" x="850">Direct IP Access</text>
+   <text id="svg_46" text-anchor="middle" fill="#555" font-size="10px" font-family="Arial, sans-serif" class="label-small" y="365" x="850">No HTTPS/CDN</text>
+  </g>
+  <g id="svg_47">
+   <rect id="svg_48" x="300" y="600" stroke="#999" fill="#EEE" rx="5" height="60" width="100"/>
+   <text id="svg_49" text-anchor="middle" fill="#333" font-weight="bold" font-size="12px" font-family="Arial, sans-serif" class="label-bold" y="635" x="350">NOAA / OpenAQ</text>
+  </g>
+  <path id="svg_50" fill="none" marker-end="url(#arrow)" stroke-dasharray="5,5" stroke-width="2" stroke="#555" class="arrow-dashed" d="m150,280l150,0"/>
+  <rect id="svg_51" stroke="#ccc" fill="white" height="20" width="100" y="255" x="180"/>
+  <text id="svg_52" text-anchor="middle" fill="#555" font-size="10px" font-family="Arial, sans-serif" class="label-small" y="270" x="230">Manual Upload (SCP)</text>
+  <path id="svg_53" fill="none" marker-end="url(#arrow)" stroke-width="2" stroke="#333" class="arrow-solid" d="m800,280l-100,0"/>
+  <text id="svg_54" text-anchor="middle" fill="#555" font-size="10px" font-family="Arial, sans-serif" class="label-small" y="270" x="750">HTTP Request</text>
+  <path id="svg_55" fill="none" marker-end="url(#arrow)" stroke-width="2" stroke="#333" class="arrow-solid" d="m350,600l50,-180"/>
+  <text id="svg_56" text-anchor="middle" fill="#555" font-size="10px" font-family="Arial, sans-serif" class="label-small" y="550" x="350">Daily Script</text>
+  <line id="svg_57" stroke-dasharray="4" stroke-width="2" stroke="#ccc" y2="350" x2="420" y1="290" x1="420"/>
+  <line id="svg_58" stroke-dasharray="4" stroke-width="2" stroke="#ccc" y2="255" x2="520" y1="255" x1="490"/>
+ </g>
+</svg>
